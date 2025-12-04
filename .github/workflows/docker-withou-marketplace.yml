@@ -23,9 +23,11 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest .
-
-      - name: View Docker images
-        run: docker images
+      - name: port number
+        run: |
+          docker run -d -p 3000:3000 mathankumar2904/without_market_doc-img:latest
+      - name: View only process Docker images
+        run: docker ps
 
       - name: Push Docker image
         run: |
