@@ -1,4 +1,4 @@
-name: Without marketplace - Build and Push Docker Image
+name: Build and Push Docker Image
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout git repo
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Check Docker version
@@ -27,16 +27,6 @@ jobs:
       - name: View Docker images
         run: docker images
 
-      - name: Change the image name
-        run: |
-          docker tag without_market_doc-img:latest ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest
-
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest
-
-
-
-
-
-
