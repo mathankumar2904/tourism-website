@@ -1,0 +1,13 @@
+name: Without marketplace - create the docker Image and push into docker Hub
+on:
+  push:
+jobs:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Install & enable the docker
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+        sudo systemctl start docker
+        sudo systemctl enable docker
