@@ -1,10 +1,12 @@
-name: Docker Image and push into Docker Hub without marketplace create
+name: Without marketplace - Build and Push Docker Image
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
-  Docker:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,9 +14,5 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install and Enable Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
-          sudo systemctl start docker
-          sudo systemctl enable docker
+      - name: Verify Docker exists
+        run: docker --version
