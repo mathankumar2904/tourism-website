@@ -19,14 +19,14 @@ jobs:
 
       - name: docker login
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin 
+          echo "${{ secrets.DOCKER_PASSWORD}}" | docker login -u "${{ secrets.DOCKER_USERNAME}}" --password-stdin  
 
       - name: build docker Img 
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest .
       - name: View the Docker Img
         run: |
-          docker images
+          docker ps
       - name: push docker img
         run: |
 
