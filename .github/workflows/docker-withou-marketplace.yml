@@ -29,7 +29,7 @@ jobs:
           docker images
       - name: website port
         run: |
-          docker run -d -p 3002:3000 mathankumar2904/without_market_doc-img:latest
+          docker run -d -p 3000:3000 mathankumar2904/without_market_doc-img:latest
       - name: push docker img
         run: |
 
