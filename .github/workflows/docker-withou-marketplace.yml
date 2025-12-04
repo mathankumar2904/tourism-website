@@ -10,30 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout git repo
         uses: actions/checkout@v3
 
-      - name: docker install or not
+      - name: Check Docker version
         run: docker --version
 
-      - name: docker login
+      - name: Docker login
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD}}" | docker login -u "${{ secrets.DOCKER_USERNAME}}" --password-stdin  
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin  
 
-      - name: build docker Img 
+      - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest .
-      - name: View the Docker Img
-        run: |
-          docker images
-      - name: website port
-        run: |
-          docker run -d -p 3000:3000 mathankumar2904/without_market_doc-img:latest
-      - name: push docker img
-        run: |
 
+      - name: View Docker images
+        run: docker images
+
+      - name: Change the image name
+        run: |
+          docker tag without_market_doc-img:latest ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest
+
+      - name: Push Docker image
+        run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest
+
+
 
 
 
