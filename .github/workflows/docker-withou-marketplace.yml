@@ -1,4 +1,4 @@
-name: Without marketplace create the docker Image and push into Docker Hub
+name: Docker Image and push into Docker Hub without marketplace create
 
 on:
   push:
