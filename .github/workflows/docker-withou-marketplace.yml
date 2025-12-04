@@ -24,10 +24,14 @@ jobs:
       - name: build docker Img 
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest .
+      - name: View the Docker Img
+        run: |
+          docker images
       - name: push docker img
         run: |
 
           docker push ${{ secrets.DOCKER_USERNAME }}/without_market_doc-img:latest
+
 
 
 
